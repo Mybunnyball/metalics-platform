@@ -1,0 +1,62 @@
+@import '@fontsource-variable/vazirmatn';
+@import '@fontsource-variable/estedad';
+@import '@fontsource-variable/unbounded';
+@import '@fontsource-variable/jetbrains-mono';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root { color-scheme: dark; }
+  html { scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; }
+  body {
+    @apply bg-steel-900 text-steel-100 font-sans antialiased;
+    font-feature-settings: "ss01";
+    line-height: 1.75;
+  }
+  h1, h2, h3, h4 { @apply font-display; line-height: 1.35; letter-spacing: -0.01em; }
+  ::selection { background: rgba(240, 162, 59, .35); color: #fff; }
+  :focus-visible { outline: 2px solid #5BB8EA; outline-offset: 2px; border-radius: 6px; }
+  input, select, textarea, button { font: inherit; }
+  /* اسکرول‌بار */
+  * { scrollbar-width: thin; scrollbar-color: #334558 transparent; }
+  *::-webkit-scrollbar { width: 8px; height: 8px; }
+  *::-webkit-scrollbar-thumb { background: #334558; border-radius: 8px; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+  }
+}
+
+@layer components {
+  /* شبکه کاغذ نقشه‌کشی */
+  .blueprint-grid {
+    background-image:
+      linear-gradient(rgba(91,184,234,.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(91,184,234,.07) 1px, transparent 1px),
+      linear-gradient(rgba(91,184,234,.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(91,184,234,.035) 1px, transparent 1px);
+    background-size: 80px 80px, 80px 80px, 16px 16px, 16px 16px;
+  }
+  .temper-text {
+    background: linear-gradient(90deg, #E9C878 0%, #C07A3E 38%, #7A5AA6 70%, #3C7DC4 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .temper-bar { background: linear-gradient(90deg, #E9C878, #C07A3E 38%, #7A5AA6 70%, #3C7DC4); }
+  .temper-border {
+    border: 1px solid transparent;
+    background: linear-gradient(#18222D, #18222D) padding-box,
+                linear-gradient(120deg, #E9C878, #C07A3E 40%, #7A5AA6 70%, #3C7DC4) border-box;
+  }
+  .panel { @apply rounded-panel border border-steel-700/70 bg-steel-850; }
+  .panel-raised { @apply rounded-panel border border-steel-700 bg-steel-800 shadow-lift; }
+  .field {
+    @apply w-full rounded-ctl border border-steel-600 bg-steel-950/60 px-3.5 py-2.5 text-sm text-steel-100 placeholder:text-steel-400
+           transition-colors focus:border-cut focus:outline-none focus:ring-2 focus:ring-cut/25;
+  }
+  .label { @apply mb-1.5 block text-[13px] font-medium text-steel-200; }
+  .code { @apply font-mono text-[12.5px] tracking-tight; direction: ltr; unicode-bidi: isolate; }
+  .ltr { direction: ltr; unicode-bidi: isolate; }
+  .link { @apply text-cut underline-offset-4 hover:underline; }
+  .container-x { @apply mx-auto w-full max-w-[1240px] px-4 sm:px-6 lg:px-8; }
+}
