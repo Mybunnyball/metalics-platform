@@ -1,0 +1,8 @@
+# محیط مجازی پایتون (ربطی به سایت ندارد)
+metalic/
+# وابستگی‌ها و خروجی build
+node_modules/
+dist/
+*.log
+*.tsbuildinfo
+.DS_Store

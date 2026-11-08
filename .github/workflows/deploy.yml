@@ -1,4 +1,5 @@
 # انتشار خودکار روی GitHub Pages با هر push به شاخه main
+# پروژه داخل زیرپوشه metalics است؛ همه مراحل build در همان پوشه اجرا می‌شوند.
 name: Deploy to GitHub Pages
 
 on:
@@ -18,18 +19,22 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: metalics
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
+          cache-dependency-path: metalics/package-lock.json
       - run: npm ci
       - run: npm run build
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: metalics/dist
 
   deploy:
     needs: build
